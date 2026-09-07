@@ -1,0 +1,3 @@
+# cached source data (re-fetch with --refresh)
+data/
+build_log.txt
