@@ -7,7 +7,7 @@ import {
   SRS_FILE, COLORS_FILE, CHAMPIONSHIPS_FILE, CURATED_FILE,
   FULL_YEAR_RANGE, DEFAULT_YEAR_RANGE, MOVING_AVERAGE_WINDOW,
   BASE_COLOR, BASE_OPACITY, BASE_HOVER_OPACITY,
-  CURATED_OPACITY, CURATED_MUTED_SATURATION, CURATED_STROKE_WIDTH,
+  CURATED_OPACITY, CURATED_RESTING_COLOR, CURATED_STROKE_WIDTH,
   PINNED_STROKE_WIDTH, HOVER_STROKE_WIDTH, BASE_STROKE_WIDTH,
   TOP_N_TEAMS, CONFERENCE_HUE_SATURATION, CONFERENCE_HUE_LIGHTNESS,
   CHAMPIONSHIP_MARKER_RADIUS, CHAMPIONSHIP_MARKER_FILL, CHAMPIONSHIP_MARKER_STROKE,
@@ -108,7 +108,6 @@ async function main() {
       school,
       conf: mostRecentConf,
       color,
-      mutedColor: mute(color),
       curated: curatedFallbackAll || curatedSet.has(school),
       rows,
       segments: contiguousSegments(rows),
@@ -169,14 +168,6 @@ function baseConf(conf) {
   return (conf || '').replace(/\s*\([^)]*\)\s*$/, '').trim();
 }
 
-// A knocked-back version of a team's colour for its resting (non-selected)
-// state: same hue, most of the saturation drained toward grey. Hovering or
-// pinning swaps back to the full colour.
-function mute(color) {
-  const c = d3.hsl(color);
-  c.s *= CURATED_MUTED_SATURATION;
-  return c.formatHex();
-}
 
 // Break a sorted rows array into runs of consecutive years, so lines don't
 // bridge gaps where a program didn't field a rated team.
@@ -355,7 +346,7 @@ function renderBackgroundAndHit() {
     .attr('d', d => d.segments.map(line).join(' '))
     .attr('stroke', d => {
       if (state.hovered === d.school) return d.color;   // full colour on hover
-      if (d.curated) return d.mutedColor;               // resting: knocked back
+      if (d.curated) return CURATED_RESTING_COLOR;      // resting: uniform grey
       return BASE_COLOR;                                // non-curated grey field
     })
     .attr('stroke-opacity', d => {
