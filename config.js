@@ -29,10 +29,14 @@ export const BASE_COLOR = '#c9c9c9';
 export const BASE_OPACITY = 0.16;
 export const BASE_HOVER_OPACITY = 0.9;
 
-// Curated programs plot in their own (real or conference-derived) color at
-// low opacity by default, so the opening view already reads as "the teams
-// that have mattered" without any interaction.
-export const CURATED_OPACITY = 0.5;
+// Curated programs plot in their own (real or conference-derived) color by
+// default, so the opening view already reads as "the teams that have
+// mattered" without any interaction. Until a line is hovered or pinned its
+// colour is knocked back toward grey (saturation multiplied by
+// CURATED_MUTED_SATURATION) so selecting one makes it jump out in full
+// colour -- the FiveThirtyEight "saturate on select" effect.
+export const CURATED_OPACITY = 0.62;
+export const CURATED_MUTED_SATURATION = 0.3;
 export const CURATED_STROKE_WIDTH = 1;
 
 // Pinned/selected entities
