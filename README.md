@@ -10,8 +10,9 @@ lifted wholesale from the old FiveThirtyEight "Complete History of the NBA"
 Elo charts (desaturated background field, saturate-on-select, per-team color,
 championship call-outs). Basketball has ~360 Division I teams &mdash; far too
 many for the football version's "plot everyone in grey" opening &mdash; so
-this version colors a **curated ~100-team set** up front and leaves the rest
-in a faint background field.
+this version draws a **curated ~150-team set** in a darker resting grey and
+leaves the rest in a fainter background field. Any line takes its team color
+on hover or pin.
 
 ## Live demo
 
@@ -28,7 +29,7 @@ Sports-Reference's explanation:
 
 ## The curated set
 
-`build_curated_set.py` decides which programs get a colored, pick-able line
+`build_curated_set.py` decides which programs get a darker, pick-able line
 by default. A program qualifies if **any** of these hold &mdash; all derived
 from the data files, nothing hand-listed:
 
@@ -134,7 +135,8 @@ to edit when adapting the tool; `app.js` is the engine. Serve over HTTP
 (`python3 -m http.server`, `npx serve .`) &mdash; it loads the CSVs via
 `fetch()` and won't run from a `file://` URL.
 
-- Curated teams plot in their color at low opacity; hover previews any team;
+- Curated teams plot in one uniform darker grey, non-curated teams in a
+  fainter grey; hovering any line shows it in its team color;
   the sidebar search boxes pin teams or conferences (dashed = conference
   per-year average SRS).
 - The context strip at the bottom brushes/zooms both axes; axis domains

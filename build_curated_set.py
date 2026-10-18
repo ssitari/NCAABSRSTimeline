@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Build the "curated" team set: the ~90-110 programs that get a colored,
-pick-able line by default in the front end. Everyone else (~260 more D-I
-programs) still plots in the faint grey background field and stays
-hover-able -- they're just not colored up front, so the opening view is
+Build the "curated" team set: the ~150 programs that get a darker grey,
+pick-able line by default in the front end. Everyone else (~250 more D-I
+programs) still plots in the fainter grey background field and stays
+hover-able -- they're just not emphasized up front, so the opening view is
 readable instead of a 360-line tangle.
 
 A program is in the curated set if ANY of these hold (all derived from
